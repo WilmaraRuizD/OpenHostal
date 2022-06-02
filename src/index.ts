@@ -5,6 +5,7 @@ import { mailRouter } from "./router/mail.router";
 import{hotalRouter}from "./router/hotal";
 import {authRouter} from "./router/ruterUsuario";
 import{usersRouter}from"./router/users"
+import{roomRouter} from"./router/habitacion"
 
 dotenv.config();
 const app =express();
@@ -18,3 +19,4 @@ app.use('/mail',mailRouter)
 app.use('/usuarios',authRouter)
 app.use('/api', hotalRouter)
 app.use('/api',usersRouter)
+app.use('/api',roomRouter)

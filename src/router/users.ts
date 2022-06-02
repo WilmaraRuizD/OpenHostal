@@ -5,9 +5,7 @@ export const usersRouter = express.Router()
 usersRouter.use(express.json())
 
 
-usersRouter.get('/',(req,res)=>{
-    res.send('Hello world')
-})
+
 
 usersRouter.get('/users',async(req,res)=>{
     let cliente = await pool.connect()
@@ -49,9 +47,9 @@ usersRouter.post('/users',async(req,res)=>{
                 rol,
                 id_hotales]
         )
-        if (response.rowCount > 0) {res.send ('Se crea hotal correctamente')
+        if (response.rowCount > 0) {res.send ('Se crea usuario correctamente')
             }
-            else{  res.json({ message: 'No se pudo crear el hotal' })}
+            else{  res.json({ message: 'No se pudo crear el usuario' })}
             }catch(err){console.log(err)
                 res.status(500).json({ error: 'Internal error server' })
             }
@@ -97,5 +95,18 @@ usersRouter.post('/users',async(req,res)=>{
                 }
             })
 
+            usersRouter.delete('/users/:id', async (req, res) => {
+                let cliente = await pool.connect()
+                const { id } = req.params
+                try{
+                    const result=await cliente.query(`DELETE FROM users WHERE id = $1`,[id])
+                    if(result.rowCount>0){res.send('Se eliminado usuario de manera exitosa')
+                }else{
+                    res.status(409).json({ message: 'Error en dato enviado' })
+                }
+            } catch(err){
+                res.status(500).json({ error: 'Error server' })
+            }
+        })
 
-            
+

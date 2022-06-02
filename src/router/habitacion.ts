@@ -1,14 +1,15 @@
 import express, { Request, Response, Router } from 'express'
 import { pool } from '../sql/config';
-export const hotalRouter = express.Router()
-
-hotalRouter.use(express.json())
+export const roomRouter = express.Router()
 
 
-hotalRouter.get('/Hoteles',async(req,res)=>{
+roomRouter.use(express.json())
+
+
+roomRouter.get('/room',async(req,res)=>{
     let cliente = await pool.connect()
     try{
-        let result =await cliente.query('SELECT * FROM hotales')
+        let result =await cliente.query('SELECT * FROM habitacion')
         res.json(result.rows)
     } catch(err) {
         console.log({ err })
@@ -16,59 +17,53 @@ hotalRouter.get('/Hoteles',async(req,res)=>{
 }
 })
 
-hotalRouter.post('/Hoteles',async(req,res)=>{
+roomRouter.post('/room',async(req,res)=>{
     try{
        
         const{
-            nombre,
-            ciudad,
-            sede,
+            tipo,
             descripcion,
-            direccion,
             foto,
-            coordenadas
+            estado,
+            capacidad,
+            servicios,
+            id_hotales
         }=req.body
        
         const cliente=await pool.connect()
         const response=await cliente.query(
-            `INSERT INTO hotales(nombre,ciudad,sede,descripcion,direccion,foto,coordenadas)VALUES ($1,$2,$3,$4,$5,$6,$7)RETURNING id`,
-            [  nombre,
-                ciudad,
-                sede,
-                descripcion,
-                direccion,
-                foto,
-                coordenadas]
+            `INSERT INTO habitacion(tipo,descripcion,foto,estado,capacidad,servicios,id_hotales)VALUES ($1,$2,$3,$4,$5,$6,$7)RETURNING id`,
+            [  tipo,descripcion,foto,estado,capacidad,servicios,id_hotales]
         )
-        if (response.rowCount > 0) {res.send ('Se crea hotal correctamente')
+        if (response.rowCount > 0) {res.send ('Se crea habitacion correctamente')
             }
-            else{  res.json({ message: 'No se pudo crear el hotal' })}
+            else{  res.json({ message: 'No se pudo crear el habitacion' })}
             }catch(err){console.log(err)
                 res.status(500).json({ error: 'Internal error server' })
             }
          } )
 
-         hotalRouter.put('/Hoteles/:id',async(req,res)=>{
+         roomRouter.put('/room/:id',async(req,res)=>{
             let cliente=await pool.connect()
             const{ id }=req.params
-            const{
-                nombre,
-                ciudad,
-                sede,
+            const{ tipo,
                 descripcion,
-                direccion,
                 foto,
-                coordenadas
+                estado,
+                capacidad,
+                servicios,
+                id_hotales
+               
             }=req.body
             try{
-                const result=await cliente.query(`UPDATE hotales SET nombre = $1, ciudad=$2,sede = $3,descripcion =$4,direccion=$5,foto=$6,coordenadas=$7 WHERE id =$8`,
-                    [  nombre,
-                       ciudad,
-                       sede,
-                       descripcion,
-                       direccion,
-                       foto,
-                       coordenadas,
+                const result=await cliente.query(`UPDATE habitacion SET tipo = $1, descripcion=$2,foto = $3,estado=$4,capacidad=$5,servicios=$6,id_hotales=$7 WHERE id =$8`,
+                    [  tipo,
+                        descripcion,
+                        foto,
+                        estado,
+                        capacidad,
+                        servicios,
+                        id_hotales,
                        id ]
                     ) 
                     if (result.rowCount > 0) {
@@ -82,12 +77,12 @@ hotalRouter.post('/Hoteles',async(req,res)=>{
                 }
             })
 
-            hotalRouter.delete('/hotales/:id', async (req, res) => {
+            roomRouter.delete('/room/:id', async (req, res) => {
                 let cliente = await pool.connect()
                 const { id } = req.params
                 try{
-                    const result=await cliente.query(`DELETE FROM hotales WHERE id = $1`,[id])
-                    if(result.rowCount>0){res.send('Se eliminado hotal de manera exitosa')
+                    const result=await cliente.query(`DELETE FROM habitacion WHERE id = $1`,[id])
+                    if(result.rowCount>0){res.send('Se eliminado habitacion de manera exitosa')
                 }else{
                     res.status(409).json({ message: 'Error en dato enviado' })
                 }

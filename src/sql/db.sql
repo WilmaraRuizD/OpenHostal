@@ -21,11 +21,11 @@ CREATE TABLE hotales(
 CREATE TABLE habitacion(
     id SERIAL NOT NULL,
     tipo varchar(30) NULL DEFAULT NULL,
-    descripción VARCHAR(100)NOT NULL,
+    descripcion VARCHAR(200)NOT NULL,
     foto VARCHAR (50)NOT NULL,
     estado varchar(30) NULL DEFAULT NULL,
     capacidad INTEGER NOT NULL,
-    servicios VARCHAR(50) NOT NULL,
+    servicios VARCHAR(100) NOT NULL,
     id_hotales SERIAL NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (id_hotales) 
@@ -65,3 +65,6 @@ CREATE TABLE users(
 
 INSERT INTO users(nombre,apellido,email,contrasena,celular,tipo_documento,numero_documento,nacionalidad,rol,id_hotales)
 VALUES('Wilmara','Ruiz','wilmara_andreina93@hotmail.com','123456','3143678428','CE','642835','VENEZOLANA','admin','1');
+
+INSERT INTO habitacion (tipo,descripcion,foto,estado,capacidad,servicios,id_hotales)
+ VALUES('Habitación Estándar','Una estancia clásica:asequible, cómoda y privada. Nuestra habitación Estándar ofrece a dos huéspedes el espacio ideal para relajarse cómodamente en total privacidad.','img1.jpg','disponible','2','Wifi,Baño Privado,Ropa de cama,Toallas,Armario,Agua caliente,Enchufe cerca de la cama','1');
