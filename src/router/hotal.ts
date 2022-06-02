@@ -1,11 +1,11 @@
 import express, { Request, Response, Router } from 'express'
 import { pool } from '../sql/config';
-export const hotalRouter = express.Router()
+export const hostalRouter = express.Router()
 
-hotalRouter.use(express.json())
+hostalRouter.use(express.json())
 
 
-hotalRouter.get('/Hoteles',async(req,res)=>{
+hostalRouter.get('/hostal',async(req,res)=>{
     let cliente = await pool.connect()
     try{
         let result =await cliente.query('SELECT * FROM hotales')
@@ -16,7 +16,7 @@ hotalRouter.get('/Hoteles',async(req,res)=>{
 }
 })
 
-hotalRouter.post('/Hoteles',async(req,res)=>{
+hostalRouter.post('/hostal',async(req,res)=>{
     try{
        
         const{
@@ -48,7 +48,7 @@ hotalRouter.post('/Hoteles',async(req,res)=>{
             }
          } )
 
-         hotalRouter.put('/Hoteles/:id',async(req,res)=>{
+         hostalRouter.put('/Hosteles/:id',async(req,res)=>{
             let cliente=await pool.connect()
             const{ id }=req.params
             const{
@@ -82,7 +82,7 @@ hotalRouter.post('/Hoteles',async(req,res)=>{
                 }
             })
 
-            hotalRouter.delete('/hotales/:id', async (req, res) => {
+            hostalRouter.delete('/hostal/:id', async (req, res) => {
                 let cliente = await pool.connect()
                 const { id } = req.params
                 try{
