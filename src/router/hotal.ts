@@ -1,4 +1,4 @@
-import express, { Request, Response, Router } from 'express'
+import express, { Request, Response, Router } from 'express';
 import { pool } from '../sql/config';
 import { uploadFile } from '../utilities/configMulter'
 import fs from "fs"

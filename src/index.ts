@@ -1,12 +1,14 @@
-import express from "express";
+import express from 'express';
 import dotenv from 'dotenv';
-import morgan from "morgan"
+import morgan from 'morgan';
 import { mailRouter } from "./router/mail.router";
 import{hostalRouter}from "./router/hotal";
 import {authRouter} from "./router/ruterUsuario";
-import{usersRouter}from"./router/users"
-import{roomRouter} from"./router/habitacion"
-
+import{usersRouter}from"./router/users";
+import{roomRouter} from"./router/habitacion";
+import{reservaRouter} from"./router/reservas";
+import{usersRouter}from"./router/users";
+import{roomRouter} from"./router/habitacion";
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
 import cors from 'cors';
@@ -48,3 +50,4 @@ app.use('/usuarios',authRouter)
 app.use('/api', hostalRouter)
 app.use('/api',usersRouter)
 app.use('/api',roomRouter)
+app.use('/api',reservaRouter)
