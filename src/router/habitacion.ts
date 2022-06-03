@@ -1,4 +1,4 @@
-import express, { Request, Response, Router } from 'express'
+import express, { Request, Response, Router } from 'express';
 import { pool } from '../sql/config';
 export const roomRouter = express.Router()
 
