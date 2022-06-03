@@ -17,6 +17,25 @@ roomRouter.get('/room',async(req,res)=>{
 }
 })
 
+roomRouter.get('/room/:id', async(req,res)=>{
+    let cliente = await pool.connect()
+    const { id } = req.params
+    
+    try{
+ 
+        let result =await cliente.query(`SELECT * FROM habitacion WHERE id = $1`,
+        [id])
+       if(result.rows.length>0){
+        res.json(result.rows)
+       }else{
+           res.send('NO EXISTE Habitación')
+       }
+    } catch(err) {
+        console.log({ err })
+        res.status(500).json({ error: 'Internal error server' })
+}
+})
+
 roomRouter.post('/room',async(req,res)=>{
     try{
        

@@ -6,6 +6,7 @@ import{hostalRouter}from "./router/hotal";
 import {authRouter} from "./router/ruterUsuario";
 import{usersRouter}from"./router/users"
 import{roomRouter} from"./router/habitacion"
+
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
 import cors from 'cors';
