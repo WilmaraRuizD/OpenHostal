@@ -25,7 +25,15 @@
  *                  description: servicios prestado en la habitacion
  *              id_hotales:
  *                  type: string
- *                  description: relacion del usuario con el hotal   
+ *                  description: relacion del usuario con el hotal  
+ *          required:
+ *                  - tipo:
+ *                  - descripcion: 
+ *                  - foto:
+ *                  - estado:
+ *                  - capacidad:
+ *                  - servicios:
+ *                  - id_hotales:  
  *      users:
  *          type: object
  *          properties:
@@ -59,6 +67,17 @@
  *              id_hotales:
  *                  type: number
  *                  description: relacion del usuario con el hotal
+ *          required: 
+ *                  - nombre:
+ *                  - apellido:
+ *                  - email:
+ *                  - contrasena:
+ *                  - celular:
+ *                  - tipo_documento:
+ *                  - numero_documento:
+ *                  - nacionalida:
+ *                  - rol:
+ *                  - id_hostal: 
  *      hostal:
  *          type: object
  *          properties: 
@@ -109,6 +128,29 @@
  *                       $ref: '#/components/schemas/hostal'
  *
  */
+
+/**
+ * @swagger
+ * /api/hostal/{id}:
+ *  get:
+ *      summary: Consulta las hostales por su id 
+ *      tags: [hostal]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *              type: string
+ *          required: true
+ *          description: Identificador de los hostales
+ *      responses:
+ *          200:
+ *              description: Se consultó hostales por ID
+ *          500:
+ *              description: Error en el servidor
+ *
+ */
+
+
 /**
  * @swagger
  * /api/hostal:
@@ -133,7 +175,7 @@
 
 /**
  * @swagger
- * /api/hospal/{id}:
+ * /api/hostal/{id}:
  *  delete:
  *      summary: Elimina los hostal pasándole el ID como parámetro
  *      tags: [hostal]
@@ -149,7 +191,6 @@
  *              description: hostal eliminada
  *          500:
  *              description: Error en el servidor
- *
  */
 
 /**
@@ -205,6 +246,28 @@
  *                       $ref: '#/components/schemas/users'
  *
  */
+
+/**
+ * @swagger
+ * /api/users/{id}:
+ *  get:
+ *      summary: Consulta los usuarios por su id 
+ *      tags: [users]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *              type: string
+ *          required: true
+ *          description: Identificador de los usuarios
+ *      responses:
+ *          200:
+ *              description: Se consultó usuarios por ID
+ *          500:
+ *              description: Error en el servidor
+ *
+ */
+
 /**
  * @swagger
  * /api/users:
@@ -300,6 +363,29 @@
  *                       $ref: '#/components/schemas/room'
  *
  */
+
+/**
+ * @swagger
+ * /api/room/{id}:
+ *  get:
+ *      summary: Consulta las hostales por su id 
+ *      tags: [room]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *              type: string
+ *          required: true
+ *          description: Identificador de las habitaciones
+ *      responses:
+ *          200:
+ *              description: Se consultó habitaciones por ID
+ *          500:
+ *              description: Error en el servidor
+ *
+ */
+
+
 /**
  * @swagger
  * /api/room:

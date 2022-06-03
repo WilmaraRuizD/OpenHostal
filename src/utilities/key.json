@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "trusty-coder-350212",
+    "private_key_id": "5df8de3e9c5cb2c5d02d6b3c5e94f00cf0e1d26a",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC+VX4DgkjM7oVO\nuQbyxn5Qi/AL1dcMMIXurSs8DT35fs/euvVhN/i0prfNeY0te5EBGr9TR15H4qBI\nVGwreoNwVtrbYiAlqfdcZDDexHOtZB168sUK0l6Q/iqWNt2IlQvqQr72SOWe7imL\nfunxhoyypI1F62LHQDi3zQNbL437N6HyBKkxr6of0CkZkgnLeTzz5m0keGH0Ueqv\n3GthWC4c7s6xAOUYor9wXX4ZVQXbqXELZy2lg2I+KlCPvlC2Zpqo11NHcnDx9s4S\ngUncdneCHA18q8Bvrqs9FANmnRxQW8papZOF0DhbnnTMm0sTGpOVlItFFG+YGv8P\nus5Ksnc5AgMBAAECggEABzE62E4ZiyjuP6nNQepPRqLrGL9lZ3AD959ylUvYzi9F\nEqEU+a4AR29PXcPcml3jfluw5Cg7v1KohOMvzTrNcbbOgWDFXzb7gnHEyP46ctBo\nLseyu3R0n10DZfa/y1P6hcks5yidCLLuPfe3RmmzsmJ2djBtZKMgIY3tNQpofpgs\nUMEw4MA/LaWjfvFPzwduwlOTu2xO7mNxtaPchI5g0YHCwBdvhk6ikBELi0DJ6qDD\nLDYwBIc+Q9HUVm0O0uE7vWpdDvDGxJhRUCcv3bXplPoIp+z48NKuyDIa8N9x1K7u\nCcv4XTS24S/nDw97qTkn7dVzvBeb4N1BpBkg9ZF26QKBgQD0jSZyKB28C4ONLy+P\nNWL1BVkSwZJHIkRwY/VnryAsQZmVWDDnj9gqY/dWGROskSGV0MknJwcfOr4vWQAy\nnv91H9HeHGIxcBnHB/fEd/YFnRzDwpGnLGxJFa0y+fOMXCtWS9XfW9LzEMXEhNTL\norebr1IUH08oG5li/6Zm300LXQKBgQDHPpFyox2k5zJJQvFCyDKF+tGShGMYoR54\n5GuFR/ajO1tmVDF1NrKdCfVrAbhCqU3VcV32gDc7GVPSNiIalU3Bqa0T3TCiMFiQ\n8SjQmygVY2ipZtKhhxwtPXuuXaIzrnAoumhQwQHco4KbMkUNtXUynZoDoAYYqWhI\nczypTHG5jQKBgF0D3u6moYCnpHarztwagzQMv69pntidiQhyjKHOM1+B6AeszpUU\n2jRtZ2MBEMGfRfX0vr28k3HmZvYdVPzsCuAipTFk/Fgvei6AslWxBwtlkc5HkBzU\nwa8epozwExl86SLen09gXqEC7SXtG/8EOe/mRELREcuAi9vivwj7wBMlAoGBAI4d\nAa9ryyQox8RbnCwPEYJg4YSJKwmROmPuQQbCypepKcs2OESrrAC47rTReDUL/3lD\nsEq3Ly3XJeNlOzQM1HZS6SGm/h5hL3rKmFsaoB+JVUinD4upDB70oLhBDwWf4V4b\nf3ZCBGr0sZ6y33AkwqBEq2r0hASpKLmsgFMdNGytAoGAScI6vVShmK37bbg5fUIG\nT8gxL1gzco0mbDZL6WOrFvrKgwhfMXOxghy/sY1qTmQy0C6nca9po35vVyktuCsB\nPgTCt0M7Ynmg7mhC6sgsTDbPAoy+xwGOV/3w/OMlz2LNRzY/JjoI9b/nFIptkdwB\n98M3HURis5Klin7NIc44FvI=\n-----END PRIVATE KEY-----\n",
+    "client_email": "storage-semillero@trusty-coder-350212.iam.gserviceaccount.com",
+    "client_id": "102800588574877377115",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/storage-semillero%40trusty-coder-350212.iam.gserviceaccount.com"
+  }
