@@ -53,7 +53,7 @@ const swaggerOptions = {
             title: 'API REST TYPSCRIPT',
             description: 'Esta es la documentación de la API en typscript-postgresql con utentificacion de firebase, creada como requisito del bootcamp de backend ',
             contact: {
-                name: 'Wilmara Ruiz Diaz, Julian quintero , Felix Rodriguez',
+                name: 'Wilmara Ruiz Diaz, Julian quintero ',
                 email: 'wilmara_andreina93@hotmail.com'
             },
             servers: ['http://localhost:3040'],

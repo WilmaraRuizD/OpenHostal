@@ -49,6 +49,24 @@ exports.roomRouter.get("/room/:id", (req, res) => __awaiter(void 0, void 0, void
         res.status(500).json({ error: "Internal error server" });
     }
 }));
+///se filtra por id de hostal
+exports.roomRouter.get("/room/hostal/:id_hostal", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let cliente = yield config_1.pool.connect();
+    const { id_hostal } = req.params;
+    try {
+        let result = yield cliente.query(`SELECT * FROM room WHERE id_hostal = $1`, [id_hostal]);
+        if (result.rows.length > 0) {
+            res.json(result.rows);
+        }
+        else {
+            res.send("No existe hostal con ID");
+        }
+    }
+    catch (err) {
+        console.log({ err });
+        res.status(500).json({ error: "Internal error server" });
+    }
+}));
 exports.roomRouter.get("/roomestado/:estado", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let cliente = yield config_1.pool.connect();
     const { estado } = req.params;

@@ -18,7 +18,6 @@ const mongodb_1 = require("mongodb");
 const database_service_1 = require("../services/database.service");
 const express_joi_validation_1 = require("express-joi-validation");
 const config_1 = require("../sql/config");
-const reservas_1 = __importDefault(require("../schemas-joi/reservas"));
 exports.reservasRouter = express_1.default.Router();
 const validator = (0, express_joi_validation_1.createValidator)({});
 exports.reservasRouter.use(express_1.default.json());
@@ -58,8 +57,18 @@ exports.reservasRouter.post('/reserva/:id', (req, res) => __awaiter(void 0, void
             const sede = resultado.sede;
             const ciudad = resultado.ciudad;
             const precio = resultado.precio;
-            const upload = req.body;
-            const newReservas = { sede, ciudad, upload, precio };
+            const upload = Object.entries(req.body);
+            const num1 = upload[0];
+            const num2 = upload[1];
+            const num3 = upload[2];
+            const num4 = upload[3];
+            const checkIn = num1[1];
+            const checkOut = num2[1];
+            const huespede = num3[1];
+            const noche = num4[1];
+            const habitacion = id;
+            const valorTotal = precio * noche;
+            const newReservas = { sede, ciudad, checkIn, checkOut, huespede, noche, habitacion, valorTotal };
             const respuesta = yield database_service_1.collections.reservas.insertOne(newReservas);
             result
                 ? res.status(200).send(`Se crean reservas con id ${respuesta.insertedId}`)
@@ -73,24 +82,26 @@ exports.reservasRouter.post('/reserva/:id', (req, res) => __awaiter(void 0, void
         res.status(500).json(error.message);
     }
 }));
-//Actualizar peliculas por id requiere token y schema joi
-exports.reservasRouter.put("/reserva/:_id", validator.body(reservas_1.default), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+//Actualizar reserva por id requiere token y schema joi
+exports.reservasRouter.put("reserva/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _b;
     const id = (_b = req === null || req === void 0 ? void 0 : req.params) === null || _b === void 0 ? void 0 : _b.id;
+    console.log(id);
+    console.log(req.body);
     try {
         const updatedReservas = req.body;
         const query = { _id: new mongodb_1.ObjectId(id) };
         const result = yield database_service_1.collections.reservas.updateOne(query, { $set: updatedReservas });
         result
-            ? res.status(200).send(`Reserva actualizada exitosamente `)
-            : res.status(304).send(`Reserva id: ${id} no actualizada`);
+            ? res.status(200).send(`Película actualizada exitosamente `)
+            : res.status(304).send(`Película id: ${id} no actualizada`);
     }
     catch (error) {
         console.error(error.message);
         res.status(400).send(error.message);
     }
 }));
-//Eliminar peliculas por id requiere Token
+//Eliminar reserva por id requiere Token
 exports.reservasRouter.delete("/reserva/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _c;
     const id = (_c = req === null || req === void 0 ? void 0 : req.params) === null || _c === void 0 ? void 0 : _c.id;

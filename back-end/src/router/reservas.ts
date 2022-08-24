@@ -11,7 +11,7 @@ const validator=createValidator({});
 
 reservasRouter.use(express.json());
 //visualiza todas las peliculas requier TOKEN
-reservasRouter.get("/reserva", validator.query(reservaShema), async (_req: Request, res: Response) => {
+reservasRouter.get("/reserva",async (_req: Request, res: Response) => {
     try {
        
         const reservas = await collections.reservas.find({}).toArray();
@@ -35,7 +35,6 @@ reservasRouter.get("/reserva/:id",async (req: Request, res: Response) => {
         res.status(404).send(`No se puede encontrar reserva: ${req.params.id}`);
     }
 });
-
 //crear nuevas reserva requiere 
 reservasRouter.post('/reserva/:id',async (req, res) => {
     let cliente = await pool.connect()
@@ -48,9 +47,21 @@ reservasRouter.post('/reserva/:id',async (req, res) => {
         const sede= resultado.sede;
         const ciudad=resultado.ciudad;
         const precio=resultado.precio
-        const upload=req.body
-        
-         const newReservas = {sede,ciudad,upload,precio};
+        const upload = Object.entries(req.body)
+   
+         const num1:any=upload[0]
+         const num2:any=upload[1]
+         const num3:any=upload[2]
+         const num4:any=upload[3]
+
+        const checkIn=num1[1]
+        const checkOut=num2[1]
+        const huespede=num3[1]
+        const noche=num4[1]
+        const habitacion=id
+        const valorTotal=precio*noche
+
+        const newReservas = {sede,ciudad,checkIn,checkOut,huespede,noche,habitacion,valorTotal};
         const respuesta= await collections.reservas.insertOne(newReservas);
           result
               ? res.status(200).send(`Se crean reservas con id ${respuesta.insertedId}`)
@@ -58,23 +69,33 @@ reservasRouter.post('/reserva/:id',async (req, res) => {
         }
        else {res.send('no exite habitación')}
     }catch(error){res.status(500).json(error.message )
-
+    }
+  }) 
 //Actualizar reserva por id requiere token y schema joi
-reservasRouter.put("/reserva/:_id",validator.body(reservaShema ),async (req: Request, res: Response) => {
+reservasRouter.put("reserva/:id", async(req:Request,res: Response) => {
     const id = req?.params?.id;
+    console.log (id);
+    console.log(req.body)
+
     try {
         const updatedReservas = req.body;
         const query = { _id: new ObjectId(id) };
+        
         const result = await collections.reservas.updateOne(query, { $set: updatedReservas });
+
         result
-            ? res.status(200).send(`Reserva actualizada exitosamente `)
-            : res.status(304).send(`Reserva id: ${id} no actualizada`);
+            ? res.status(200).send(`Película actualizada exitosamente `)
+            : res.status(304).send(`Película id: ${id} no actualizada`);
     } catch (error) {
         console.error(error.message);
         res.status(400).send(error.message);
     }
 });
-//Eliminar reservas por id requiere Token
+
+
+
+
+//Eliminar reserva por id requiere Token
 reservasRouter.delete("/reserva/:id",async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
@@ -94,4 +115,3 @@ reservasRouter.delete("/reserva/:id",async (req: Request, res: Response) => {
         res.status(400).send(error.message);
     }
 });
-

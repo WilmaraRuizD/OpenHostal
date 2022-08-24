@@ -274,6 +274,8 @@
  * @swagger
  * /api/hostal:
  *  post:
+ *      security:
+ *          - bearerAuth: []
  *      summary: Crea un nuevo hostal
  *      tags: [hostal]
  *      requestBody:
@@ -702,80 +704,45 @@
  *
  */
 /**
+/**
 * @swagger
 * /api/reserva/{id}:
-*  get:
-*      summary: Consulta las reservas por su id
+*  post:
+*      summary: Crea una nueva reserva pasandole el id de habitación
 *      tags: [reserva]
 *      parameters:
 *        - in: path
 *          name: id
-*          schema:
-*              type: string
+*      requestBody:
 *          required: true
-*          description: Identificador de las reservas
+*          content:
+*              application/json:
+*                  schema:
+*                      type: object
+*                      properties:
+*                          checkIn:
+*                              type: string
+*                              description: fecha de entrada de la reserva
+*                          checkOut:
+*                              type: string
+*                              description: fecha de salida de la reserva
+*                          huespedes:
+*                              type: number
+*                              description: cantidad de huéspedes de la reserva
+*                          noches:
+*                              type: number
+*                              description: cantidad de noches de la reserva
 *      responses:
 *          200:
-*              description: Se consultó la reserva por ID
+*              description: reserva creada
+*          400:
+*              description: reserva no creada por error en el envío de datos
 *          500:
-*              description: Error en el servidor
+*              description: reserva no creada por error en el servidor
 */
 /**
- * @swagger
- * /api/reserva/{id}:
- *  post:
- *      summary: Crea una nueva reserva pasandole el id de habitación
- *      tags: [reserva]
- *      parameters:
- *        - in: path
- *          name: id
- *      requestBody:
- *          required: true
- *          content:
- *              application/json:
- *                  schema:
- *                      type: object
- *                      properties:
- *                          checkIn:
- *                              type: string
- *                              description: fecha de entrada de la reserva
- *                          checkOut:
- *                              type: string
- *                              description: fecha de salida de la reserva
- *                          huespedes:
- *                              type: number
- *                              description: cantidad de huéspedes de la reserva
- *                          noches:
- *                              type: number
- *                              description: cantidad de noches de la reserva
- *      responses:
- *          200:
- *              description: reserva creada
- *          400:
- *              description: reserva no creada por error en el envío de datos
- *          500:
- *              description: reserva no creada por error en el servidor
-*/
-/**
- * @swagger
- * /api/reserva/{id}:
- *  delete:
- *      summary: Elimina las reserva pasándole el ID como parámetro
- *      tags: [reserva]
- *      parameters:
- *        - in: path
- *          name: id
- *          schema:
- *              type: string
- *          required: true
- *          description: Identificador de las habitaciones
- *      responses:
- *          200:
- *              description: reserva eliminada
- *          500:
- *              description: Error en el servidor
- */
-/**
+
+ /**
  * @swagger
  * /api/reserva/{id}:
  *  put:
@@ -808,6 +775,46 @@
  *          500:
  *              description: Error en el servidor
  */
+/**
+* @swagger
+* /api/reserva/{id}:
+*  delete:
+*      summary: Elimina las reserva pasándole el ID como parámetro
+*      tags: [reserva]
+*      parameters:
+*        - in: path
+*          name: id
+*          schema:
+*              type: string
+*          required: true
+*          description: Identificador de las habitaciones
+*      responses:
+*          200:
+*              description: reserva eliminada
+*          500:
+*              description: Error en el servidor
+*/
+/**
+ * @swagger
+ * /api/SEND_CHECKIN:
+ *  post:
+ *      summary: Crea una nueva reserva
+ *      tags: [reserva]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                 schema:
+ *                   type: object
+ *                   $ref: '#/components/schemas/reserva'
+ *      responses:
+ *          200:
+ *              description: reserva creada
+ *          400:
+ *              description: reserva no creada por error en el envío de datos
+ *          500:
+ *              description: reserva no creada por error en el servidor
+*/
 /**
  * @swagger
  * /api/SEND_CheckOut:
@@ -1294,5 +1301,5 @@
  *              description: Se eliminó el transporte de manera correcta
  *          400:
  *              description: El transporte no eliminado por error en el envio de datos
- */ 
+ */
 //# sourceMappingURL=hotal.docs.js.map

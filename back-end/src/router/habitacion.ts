@@ -35,6 +35,22 @@ roomRouter.get("/room/:id", async (req, res) => {
     res.status(500).json({ error: "Internal error server" });
   }
 });
+///se filtra por id de hostal
+roomRouter.get("/room/hostal/:id_hostal", async (req, res) => {
+  let cliente = await pool.connect();
+  const { id_hostal } = req.params;
+  try {
+    let result = await cliente.query(`SELECT * FROM room WHERE id_hostal = $1`, [id_hostal]);
+    if (result.rows.length > 0) {
+      res.json(result.rows);
+    } else {
+      res.send("No existe hostal con ID");
+    }
+  } catch (err) {
+    console.log({ err });
+    res.status(500).json({ error: "Internal error server" });
+  }
+});
 
 roomRouter.get("/roomestado/:estado", async (req, res) => {
   let cliente = await pool.connect();

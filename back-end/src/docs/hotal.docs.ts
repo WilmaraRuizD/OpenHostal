@@ -274,6 +274,8 @@
  * @swagger
  * /api/hostal:
  *  post:
+ *      security:
+ *          - bearerAuth: []
  *      summary: Crea un nuevo hostal
  *      tags: [hostal]
  *      requestBody:
