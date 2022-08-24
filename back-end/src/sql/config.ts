@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Pool } from "pg";
 import dotenv from 'dotenv'
 dotenv.config();
@@ -20,3 +21,14 @@ export const pool = new Pool({
 
 module.exports = { pool }
 
+=======
+import { Pool } from "pg";
+
+export const pool = new Pool({
+ user:'postgres',
+ host:'localhost',
+ password:'12345',
+ database:'openhostel',
+ port:5432
+});
+>>>>>>> 39e61b5e994c40422e69a986eef44630543c365e

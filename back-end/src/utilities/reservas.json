@@ -1,0 +1,26 @@
+[{
+"sede":"Medellin & Cowork","ciudad":"Medellin",
+"checkIn":"2022-07-20",
+"checkOut":"2022-07-21",
+"huespedes":"2",
+"noches":"1",
+"habitacion":"1",
+"valorTotal":"214636"},
+{
+    "sede":"Medellin & Cowork","ciudad":"Medellin",
+    "checkIn":"2022-18-06",
+    "checkOut":"2022-07-21",
+    "huespedes":"2",
+    "noches":"1",
+    "habitacion":"1",
+    "valorTotal":"214636"},
+    
+    {
+        "sede":"Medellin & Cowork","ciudad":"Medellin",
+        "checkIn":"2022-07-20",
+        "checkOut":"2022-07-21",
+        "huespedes":"2",
+        "noches":"1",
+        "habitacion":"1",
+        "valorTotal":"214636"}
+]

@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+<<<<<<< HEAD
 import templateIds from '../constants/templateid.const';
 import templateIds1 from '../constants/templateid.const1';
 import templateIds2 from '../constants/templateid.const2';
@@ -103,3 +104,39 @@ codigoRouter.post('/validar', validator.body(mailSchema),async (_req: Request, r
 
   }
 })
+=======
+import templateIds from '../constants/templateid.const'
+import generatecode from '../utilities/generarcodigo'
+import sendEmail from '../utilities/sendgrid'
+import { sendEmailVerification } from "firebase/auth";
+export const codigoRouter =express.Router();
+
+codigoRouter.use(express.json());
+
+codigoRouter.post('/codigo',async (req: Request, res: Response) => {
+    try{
+   
+     const {name, email,password}=req.body  
+     console.log(name,email,password);
+     const codigo = generatecode();
+      await sendEmail(
+        email,
+        {
+          subject: 'Validate email',
+          name,
+          codigo
+        },
+        templateIds.SEND_CODE
+      )
+      res.status(200).send('Mail send')
+    }
+    catch(error){
+        res.status(500).send("error")
+
+    }
+})
+
+
+
+
+>>>>>>> 39e61b5e994c40422e69a986eef44630543c365e
